@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css"/>
     <link rel="stylesheet" href="./assets/css/style.css"/> 
-    
-    <title>Your Favorite Weather Dashboard</title>
+
+    <title>Your Favorite Weather Dash</title>
 </head>
 
 <body>
@@ -30,11 +30,17 @@
         <div class="row">
             <div class="col-3 bg-light border-1">
                 <div class="headerSearch row mx-3">
+                    <h3>Search a City</h3>
+                </div>
+
+                <div class="formInput row ml-3">
                     <input class="border" type="text" id="searchCity" />
-                    <button type="button" class="btn btn-dark btn-md border-0" id="btn-search">
+                    <button type="button" class="btn btn-dark btn-lg border-0" id="btn-search">
                         <span class="oi oi-magnifying-glass"></span>
                     </button>
                 </div>
+                <!-- Area for the history of citys searched -->
+                <div class="list-group row m-3" id="city-history"></div>
             </div>
 
             <div class="col-9">
