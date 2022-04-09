@@ -123,7 +123,7 @@ var weather = function (city, uv) {
     weatherCard.classList.add("d-flex");
 
     // For loop to get information from the currentWeather aray
-    for (var i = 0; i < currentWeather.length; i++) {
+    for (var i = 1; i < currentWeather.length; i++) {
 
         var card = document.createElement("div"); // Div for the bootstrap card
         card.classList.add("card");
