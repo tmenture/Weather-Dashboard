@@ -20,7 +20,7 @@ var currentWeather = []; // Array for the weather conditions of the searched cit
 // Loads the local storage when page loads
 function start() {
     loadWeather();
-}
+};
 
 // Function to retrieve the data from localStorage
 var loadWeather = function() {
@@ -60,17 +60,17 @@ var determineUV = function(uv) {
     var uvIndex = parseFloat(uv);
     var bgColor; // Variable to hold the background color of the uv index
 
-    if (uvIndex <3) {
-        bgColor = "bg-success";
+    if (uvIndex < 3) {
+        bgColor = "bg-success"; // Low = Green
     }
     else if (uvIndex < 6) {
-        bgColor = "bg-warning";
+        bgColor = "bg-warning"; // Moderate = Yellow
     }
     else if (uvIndex < 8) {
-        bgColor = "bg-danger";
+        bgColor = "bg-danger"; // High = Red
     }
     else {
-        bgColor = "bg-dark";
+        bgColor = "bg-dark"; // Very High / Extreme = Black
     }
 
     return bgColor;
@@ -123,7 +123,8 @@ var weather = function (city, uv) {
     weatherCard.classList.add("d-flex");
 
     // For loop to get information from the currentWeather aray
-    for ( var i = 1; i < currentWeather.length; i++) {
+    for (var i = 0; i < currentWeather.length; i++) {
+
         var card = document.createElement("div"); // Div for the bootstrap card
         card.classList.add("card");
         card.classList.add("bg-primary");
@@ -137,16 +138,15 @@ var weather = function (city, uv) {
 
         var cardTitle = document.createElement("h6");
         cardTitle.classList.add("card-title");
-        cardTitle.textContent = currentWeather[i].dateT;
 
         var forecastImg = document.createElement("img");
+        cardTitle.textContent = currentWeather[i].dateT;
         forecastImg.setAttribute("src", currentWeather[i].icon);
 
         var cardText1 = document.createElement("p");
+        var cardText2 = document.createElement("p");
         cardText1.classList.add("small");
         cardText1.textContent = " Temperature: " + currentWeather[i].temp + " °F";
-
-        var cardText2 = document.createElement("p");
         cardText2.classList.add("small");
         cardText2.textContent = "Humidity: " + currentWeather[i].humidity + "%";
         
@@ -181,7 +181,18 @@ var savedCity = function (city) {
     }
 
     loadWeather();
-}; 
+};
+
+var searchDate9AM = function (str) {
+    var hour = str.split(" ")[1].split(":")[0];
+    var flag = false;
+    
+    if(hour === "09"){
+        flag = true;
+    }        
+    
+    return flag;
+};
 
 // Formats the date from default to MM/DD/YYYY
 var dateFormat = function (date) {
@@ -206,6 +217,24 @@ var dataObject = function (list, position) {
     };
 
     currentWeather.push(object);
+    
+    for(var i = 1; i < list.length; i++) {
+        
+
+        if(searchDate9AM(list[i].dt_txt)) {
+            object = {
+                dateT : dateFormat(list[i].dt_txt),
+                humidity : list[i].main.humidity,
+                speed: list[i].wind.speed,
+                temp: list[i].main.temp,
+                icon : urlIcon + list[i].weather[0].icon + ".png",
+                lat : position.lat,
+                lon: position.lon
+            };
+
+            currentWeather.push(object);
+        }
+    }
 };
 
 // Retrieves information about the searched city's weather through openweathermap.org api
