@@ -111,6 +111,7 @@ var weather = function (city, uv) {
 
     var fiveDayForecast = document.createElement("div"); // Div that will contain 5 day forecast
     fiveDayForecast.classList.add("row"); // Bootstrap class
+    fiveDayForecast.classList.add("col-12"); // Bootstrap Class
 
     var storeClass = document.createElement("div"); // Div to contain the <h2> header with Bootstrap class col-12 
     storeClass.classList.add("col-12");
@@ -136,29 +137,29 @@ var weather = function (city, uv) {
         var cardBody = document.createElement("div"); // Div for card body
         cardBody.classList.add("card-body");
 
-        var cardTitle = document.createElement("h6");
+        var cardTitle = document.createElement("h6"); // Element for the card title 
         cardTitle.classList.add("card-title");
 
-        var forecastImg = document.createElement("img");
+        var forecastImg = document.createElement("img"); // Element for the weather image 
         cardTitle.textContent = currentWeather[i].dateT;
-        forecastImg.setAttribute("src", currentWeather[i].icon);
+        forecastImg.setAttribute("src", currentWeather[i].icon); // Source of the image 
 
-        var cardText1 = document.createElement("p");
-        var cardText2 = document.createElement("p");
+        var cardText1 = document.createElement("p"); // Text element for the weather card 
+        var cardText2 = document.createElement("p"); // Text element for the weather card
         cardText1.classList.add("small");
         cardText1.textContent = " Temperature: " + currentWeather[i].temp + " °F";
         cardText2.classList.add("small");
         cardText2.textContent = "Humidity: " + currentWeather[i].humidity + "%";
         
-        cardBody.appendChild(cardTitle);
-        cardBody.appendChild(forecastImg);
+        cardBody.appendChild(cardTitle);           // Appends all dynamically created elements
+        cardBody.appendChild(forecastImg);         // to their parent containers.
         cardBody.appendChild(cardText1);
         cardBody.appendChild(cardText2);
         card.appendChild(cardBody);
         weatherCard.appendChild(card);
     }
 
-    forecastEl.appendChild(weatherCard);
+    forecastEl.appendChild(weatherCard); // Appends all previously created elements to the forecastEl 
 };
 
 // Saves the city to localStorage
