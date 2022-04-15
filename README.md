@@ -10,7 +10,7 @@ An application that relays a five day weather forecast to any user anywhere in t
 * jQuery
 * Bootstrap
 * FontAwesome
-* Openweather API
+* Openweathermap API
 
 ## Deployed Link
 https://tmenture.github.io/Weather-Dashboard/
